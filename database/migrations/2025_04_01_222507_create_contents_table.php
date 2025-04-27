@@ -11,9 +11,9 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('contents', function (Blueprint $table) {
-            $table->uuid('id')->unique();
+            $table->uuid('id')->primary();
             $table->string('judul');
-            $table->enum('tipe', ['dokumentasi_akademik', 'dokumentasi_non_akademik', 'publikasi_partnership', 'publikasi_medinfo', 'merchandise']);
+            $table->enum('tipe', ['dokumentasi_akademik', 'dokumentasi_non_akademik', 'publikasi_partnership', 'publikasi_medinfo']);
             $table->text('isi');
             $table->string('gambar')->nullable();
             $table->timestamps();
