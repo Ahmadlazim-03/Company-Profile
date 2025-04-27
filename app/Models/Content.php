@@ -9,10 +9,6 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul', 'tipe', 'isi', 'gambar', 'user_id'];
+    protected $fillable = ['judul', 'tipe', 'isi', 'gambar'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
