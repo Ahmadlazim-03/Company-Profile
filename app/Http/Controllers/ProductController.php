@@ -23,12 +23,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
             'sku' => 'required|string|unique:products,sku',
-            'image' => 'nullable|string', // Assuming this is a URL or path
+            'gambar' => 'nullable|string', // Assuming this is a URL or path
             'status' => 'required|in:active,inactive',
         ]);
 
@@ -42,16 +42,44 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-            'sku' => 'required|string|unique:products,sku,' . $product->id,
-            'image' => 'nullable|string',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+            'sku' => 'required|string|unique:products,sku,',
+            'gambar' => 'nullable|string',
             'status' => 'required|in:active,inactive',
         ]);
 
-        $product->update($validated);
+        if (isset($validated['nama'])) {
+            $product->nama = $validated['nama'];
+        }
+
+        if (isset($validated['deskripsi'])) {
+            $product->deskripsi = $validated['deskripsi'];
+        }
+
+        if (isset($validated['harga'])) {
+            $product->harga = $validated['harga'];
+        }
+
+        if (isset($validated['stok'])) {
+            $product->stok = $validated['stok'];
+        }
+
+        if (isset($validated['sku'])) {
+            $product->sku = $validated['sku'];
+        }
+        
+        if (isset($validated['gambar'])) {
+            $product->gambar = $validated['gambar'];
+        }
+        
+        if (isset($validated['status'])) {
+            $product->status = $validated['status'];
+        }
+
+        $product->save();
         return response()->json($product, 200); // Return the updated product with a 200 status
     }
 
