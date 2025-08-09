@@ -86,6 +86,15 @@ Route::get('/gallery', function () {
     return view('coming-soon');
 });
 
+Route::get('/marketplace', function () {
+    return view('marketplace.index');
+});
+Route::get('/marketplace/baju-himti', function () {
+    return view('marketplace.detail');
+});
+
+
+
 // Catch-all route for any undefined routes
 Route::fallback(function () {
     return view('coming-soon');

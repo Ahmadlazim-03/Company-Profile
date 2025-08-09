@@ -34,7 +34,7 @@
             {{-- Submenu Features sekarang ada di dalam sini --}}
             <div class="sub-menu features-menu">
                 <a href="" class="border-bottom">Berkas</a>
-                <a href="" class="border-bottom">Marketplace</a>
+                <a href="/marketplace" class="border-bottom">Marketplace</a>
                 <a href="/portal">Portal</a>
             </div>
         </div>
